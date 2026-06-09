@@ -16,10 +16,10 @@ export default function Hero() {
     >
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
         <img
-          src="/images/mountain-landscape.jpg"
+          src="https://cdn.poehali.dev/projects/57cf5f15-da54-48e5-a91c-81be0d6788ec/files/05e22911-9dcd-48a7-8b4d-39d23962ad2b.jpg"
           alt="Студия растяжки Гибкость"
           className="w-full h-full object-cover"
-          style={{ filter: "brightness(0.55) saturate(0.8)" }}
+          style={{ filter: "brightness(0.6) saturate(0.95)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-rose-900/20 via-transparent to-rose-950/40" />
       </motion.div>

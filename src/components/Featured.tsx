@@ -67,52 +67,60 @@ export default function Featured() {
       </section>
 
       {/* Расписание */}
-      <section id="schedule" className="bg-white px-6 py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto">
+      <section id="schedule" className="bg-white py-20 lg:py-28">
+        <div className="px-6 max-w-7xl mx-auto">
           <p className="uppercase text-xs tracking-[0.3em] text-rose-400 mb-3 text-center">
             На неделю
           </p>
           <h2 className="font-serif text-4xl lg:text-5xl text-center text-neutral-800 mb-16 italic font-light">
             Расписание занятий
           </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-rose-100">
-                  <th className="text-left py-3 px-4 text-neutral-400 font-normal uppercase tracking-wide text-xs">День</th>
-                  <th className="text-left py-3 px-4 text-neutral-400 font-normal uppercase tracking-wide text-xs">Время</th>
-                  <th className="text-left py-3 px-4 text-neutral-400 font-normal uppercase tracking-wide text-xs">Занятие</th>
-                  <th className="text-left py-3 px-4 text-neutral-400 font-normal uppercase tracking-wide text-xs">Уровень</th>
+        </div>
+        <div className="w-full overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-rose-50">
+                <th className="text-left py-4 px-6 text-neutral-400 font-normal uppercase tracking-widest text-xs w-48">День</th>
+                <th className="text-left py-4 px-6 text-neutral-400 font-normal uppercase tracking-widest text-xs w-28">Время</th>
+                <th className="text-left py-4 px-6 text-neutral-400 font-normal uppercase tracking-widest text-xs">Занятие</th>
+                <th className="text-left py-4 px-6 text-neutral-400 font-normal uppercase tracking-widest text-xs w-36">Уровень</th>
+                <th className="text-left py-4 px-6 text-neutral-400 font-normal uppercase tracking-widest text-xs w-36">Тренер</th>
+                <th className="py-4 px-6 w-36"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { day: "Понедельник", time: "10:00", name: "Стретчинг для начинающих", level: "Новички", trainer: "Анна К." },
+                { day: "Понедельник", time: "19:00", name: "Вечерний стретчинг", level: "Все уровни", trainer: "Оля М." },
+                { day: "Среда", time: "10:00", name: "Стретчинг для начинающих", level: "Новички", trainer: "Анна К." },
+                { day: "Среда", time: "19:00", name: "Йога и растяжка", level: "Все уровни", trainer: "Оля М." },
+                { day: "Пятница", time: "10:00", name: "Глубокий стретчинг", level: "Все уровни", trainer: "Анна К." },
+                { day: "Пятница", time: "19:00", name: "Вечерний стретчинг", level: "Все уровни", trainer: "Оля М." },
+                { day: "Суббота", time: "11:00", name: "Стретчинг выходного дня", level: "Все уровни", trainer: "Анна К." },
+                { day: "Воскресенье", time: "11:00", name: "Расслабляющий стретчинг", level: "Все уровни", trainer: "Оля М." },
+              ].map((row, i) => (
+                <tr
+                  key={i}
+                  className="border-b border-rose-50 hover:bg-rose-50/40 transition-colors duration-150"
+                >
+                  <td className="py-5 px-6 text-neutral-700 font-medium">{row.day}</td>
+                  <td className="py-5 px-6 text-rose-500 font-bold text-base">{row.time}</td>
+                  <td className="py-5 px-6 text-neutral-700">{row.name}</td>
+                  <td className="py-5 px-6">
+                    <span className={`px-3 py-1 rounded-full text-xs ${row.level === "Новички" ? "bg-rose-100 text-rose-600" : "bg-neutral-100 text-neutral-500"}`}>
+                      {row.level}
+                    </span>
+                  </td>
+                  <td className="py-5 px-6 text-neutral-400 text-sm">{row.trainer}</td>
+                  <td className="py-5 px-6">
+                    <a href="#signup" className="text-rose-400 hover:text-rose-600 text-xs uppercase tracking-widest transition-colors">
+                      Записаться →
+                    </a>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {[
-                  { day: "Понедельник", time: "10:00", name: "Стретчинг для начинающих", level: "Новички" },
-                  { day: "Понедельник", time: "19:00", name: "Вечерний стретчинг", level: "Все уровни" },
-                  { day: "Среда", time: "10:00", name: "Стретчинг для начинающих", level: "Новички" },
-                  { day: "Среда", time: "19:00", name: "Йога и растяжка", level: "Все уровни" },
-                  { day: "Пятница", time: "10:00", name: "Глубокий стретчинг", level: "Все уровни" },
-                  { day: "Пятница", time: "19:00", name: "Вечерний стретчинг", level: "Все уровни" },
-                  { day: "Суббота", time: "11:00", name: "Стретчинг выходного дня", level: "Все уровни" },
-                  { day: "Воскресенье", time: "11:00", name: "Расслабляющий стретчинг", level: "Все уровни" },
-                ].map((row, i) => (
-                  <tr
-                    key={i}
-                    className="border-b border-rose-50 hover:bg-rose-50/50 transition-colors duration-150"
-                  >
-                    <td className="py-4 px-4 text-neutral-700 font-medium">{row.day}</td>
-                    <td className="py-4 px-4 text-rose-500 font-semibold">{row.time}</td>
-                    <td className="py-4 px-4 text-neutral-700">{row.name}</td>
-                    <td className="py-4 px-4">
-                      <span className="bg-rose-100 text-rose-600 px-3 py-1 rounded-full text-xs">
-                        {row.level}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -133,6 +141,7 @@ export default function Featured() {
                 desc: "Одно занятие",
                 features: ["Любое занятие из расписания", "Подходит для знакомства"],
                 highlighted: false,
+                badge: null,
               },
               {
                 name: "8 занятий",
@@ -140,6 +149,7 @@ export default function Featured() {
                 desc: "600 ₽ за занятие",
                 features: ["Действует 2 месяца", "Любые дни и время", "Самый популярный"],
                 highlighted: true,
+                badge: "Хит",
               },
               {
                 name: "Безлимит",
@@ -147,16 +157,22 @@ export default function Featured() {
                 desc: "В месяц",
                 features: ["Неограниченные занятия", "Приоритетная запись", "Лучшая цена за занятие"],
                 highlighted: false,
+                badge: null,
               },
             ].map((plan) => (
               <div
                 key={plan.name}
-                className={`rounded-2xl p-8 flex flex-col ${
+                className={`rounded-2xl p-8 flex flex-col relative ${
                   plan.highlighted
                     ? "bg-rose-400 text-white shadow-xl shadow-rose-200 scale-105"
                     : "bg-white border border-rose-100 shadow-sm"
                 }`}
               >
+                {plan.badge && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-900 text-white text-xs uppercase tracking-widest px-4 py-1 rounded-full shadow-md">
+                    {plan.badge}
+                  </span>
+                )}
                 <p className={`text-xs uppercase tracking-widest mb-2 ${plan.highlighted ? "text-rose-100" : "text-rose-400"}`}>
                   {plan.name}
                 </p>
