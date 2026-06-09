@@ -33,17 +33,16 @@ def handler(event: dict, context) -> dict:
     chat_id = os.environ['TELEGRAM_CHAT_ID']
 
     text = (
-        f"🌸 *Новая заявка — Студия «Гибкость»*\n\n"
-        f"👤 Имя: {name}\n"
-        f"📞 Телефон: {phone}\n"
-        f"🕐 Удобное время: {time or 'не указано'}"
+        f"Новая заявка - Студия Гибкость\n\n"
+        f"Имя: {name}\n"
+        f"Телефон: {phone}\n"
+        f"Удобное время: {time or 'не указано'}"
     )
 
     payload = json.dumps({
         'chat_id': chat_id,
         'text': text,
-        'parse_mode': 'Markdown'
-    }).encode('utf-8')
+    }, ensure_ascii=False).encode('utf-8')
 
     req = urllib.request.Request(
         f'https://api.telegram.org/bot{bot_token}/sendMessage',
