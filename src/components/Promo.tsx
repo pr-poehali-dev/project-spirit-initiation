@@ -1,6 +1,8 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef, useState } from "react";
 
+const BACKEND_URL = "https://functions.poehali.dev/d723739f-359c-431c-ba3b-6c15b0ba02b5";
+
 export default function Promo() {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -11,10 +13,26 @@ export default function Promo() {
 
   const [form, setForm] = useState({ name: "", phone: "", time: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setSent(true);
+    } catch {
+      setError("Не удалось отправить заявку. Попробуйте ещё раз.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -111,17 +129,69 @@ export default function Promo() {
                   <option>Суббота или воскресенье</option>
                 </select>
               </div>
+              {error && (
+                <p className="text-red-400 text-sm text-center">{error}</p>
+              )}
               <button
                 type="submit"
-                className="bg-rose-400 hover:bg-rose-500 text-white py-4 text-sm uppercase tracking-widest transition-all duration-300 rounded-lg mt-2 hover:scale-[1.02]"
+                disabled={loading}
+                className="bg-rose-400 hover:bg-rose-500 disabled:opacity-60 text-white py-4 text-sm uppercase tracking-widest transition-all duration-300 rounded-lg mt-2 hover:scale-[1.02] disabled:hover:scale-100"
               >
-                Записаться на пробное занятие
+                {loading ? "Отправляем..." : "Записаться на пробное занятие"}
               </button>
               <p className="text-center text-neutral-300 text-xs">
                 Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
               </p>
             </form>
           )}
+        </div>
+      </section>
+
+      {/* Карта и адрес */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
+          <p className="uppercase text-xs tracking-[0.3em] text-rose-400 mb-3 text-center">
+            Как нас найти
+          </p>
+          <h2 className="font-serif text-4xl lg:text-5xl text-center text-neutral-800 mb-16 italic font-light">
+            Мы в Казани
+          </h2>
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+            <div className="w-full lg:w-2/3 rounded-2xl overflow-hidden shadow-sm border border-rose-100 h-[400px]">
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?text=%D1%83%D0%BB.%20%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D0%B0%2C%2010%2C%20%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C&z=16&l=map"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Карта — студия Гибкость"
+                allowFullScreen
+              />
+            </div>
+            <div className="w-full lg:w-1/3 flex flex-col gap-6 pt-2">
+              <div>
+                <p className="text-xs uppercase tracking-widest text-rose-400 mb-2">Адрес</p>
+                <p className="text-neutral-800 font-medium">ул. Пушкина, 10</p>
+                <p className="text-neutral-400 text-sm">Казань</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-rose-400 mb-2">Режим работы</p>
+                <p className="text-neutral-700 text-sm">Пн–Пт: 9:00–21:00</p>
+                <p className="text-neutral-700 text-sm">Сб–Вс: 10:00–18:00</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-rose-400 mb-2">Телефон</p>
+                <a href="tel:+78001234567" className="text-neutral-800 font-medium hover:text-rose-400 transition-colors">
+                  +7 (800) 123-45-67
+                </a>
+              </div>
+              <a
+                href="#signup"
+                className="inline-block text-center bg-rose-400 hover:bg-rose-500 text-white py-3 px-6 text-sm uppercase tracking-widest transition-all duration-300 rounded-lg"
+              >
+                Записаться
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>
