@@ -18,8 +18,8 @@ export default function Hero() {
         <img
           src="https://cdn.poehali.dev/projects/57cf5f15-da54-48e5-a91c-81be0d6788ec/files/93f73fc7-788d-462c-96c5-db3bea9eb25e.jpg"
           alt="Студия растяжки Гибкость"
-          className="w-full h-full object-cover object-top"
-          style={{ filter: "brightness(0.6) saturate(0.95)", transform: "scale(0.75)", transformOrigin: "center top" }}
+          className="w-full h-full object-cover"
+          style={{ filter: "brightness(0.6) saturate(0.95)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-rose-900/20 via-transparent to-rose-950/40" />
       </motion.div>
