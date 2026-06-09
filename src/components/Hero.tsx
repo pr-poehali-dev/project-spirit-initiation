@@ -16,7 +16,7 @@ export default function Hero() {
     >
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
         <img
-          src="https://cdn.poehali.dev/projects/57cf5f15-da54-48e5-a91c-81be0d6788ec/files/9bade7a3-63ce-4803-85f2-3a3f3b06a3ee.jpg"
+          src="https://cdn.poehali.dev/projects/57cf5f15-da54-48e5-a91c-81be0d6788ec/files/5719f388-ada4-4ad4-847e-a07d08b60d66.jpg"
           alt="Студия растяжки Гибкость"
           className="w-full h-full object-cover"
           style={{ filter: "brightness(0.6) saturate(0.95)" }}
