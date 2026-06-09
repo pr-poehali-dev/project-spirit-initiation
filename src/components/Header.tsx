@@ -6,19 +6,25 @@ export default function Header({ className }: HeaderProps) {
   return (
     <header className={`absolute top-0 left-0 right-0 z-10 p-6 ${className ?? ""}`}>
       <div className="flex justify-between items-center">
-        <div className="text-white text-sm uppercase tracking-wide">lumino</div>
+        <div className="text-white text-lg font-serif tracking-widest italic">Гибкость</div>
         <nav className="flex gap-8">
           <a
-            href="#about"
-            className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
+            href="#schedule"
+            className="text-white/90 hover:text-white transition-colors duration-300 text-sm tracking-wide"
           >
-            О нас
+            Расписание
           </a>
           <a
-            href="#contact"
-            className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
+            href="#prices"
+            className="text-white/90 hover:text-white transition-colors duration-300 text-sm tracking-wide"
           >
-            Контакты
+            Цены
+          </a>
+          <a
+            href="#signup"
+            className="text-white/90 hover:text-white transition-colors duration-300 text-sm tracking-wide"
+          >
+            Записаться
           </a>
         </nav>
       </div>
